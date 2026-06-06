@@ -27,7 +27,19 @@ This is also a first GitHub learning project. The repository is intentionally sm
 
 ## Commands
 
-Run these as an operator or in a cheats-enabled single-player world:
+Use these player commands after `/reload`:
+
+```mcfunction
+/trigger rc_ping
+/trigger rc_start
+/trigger rc_stop
+/trigger rc_force
+/trigger rc_uninstall
+```
+
+The `/trigger` commands are the recommended way to use the datapack.
+
+Operator function commands are also available:
 
 ```mcfunction
 /function calamity:ping
@@ -47,7 +59,7 @@ The longer admin names also work:
 /function calamity:admin/uninstall
 ```
 
-Use `ping` first when testing. If `ping` works, Minecraft can see this datapack's functions.
+Use `rc_ping` first when testing. If it works, the datapack command triggers are ready.
 
 ## GitHub Learning Checklist
 
@@ -94,15 +106,15 @@ If Minecraft says `Unknown command`, first run:
 /help function
 ```
 
-If `/help function` is unknown, commands/cheats/operator permissions are not active in that world or server.
+If `/help trigger` is unknown, commands/cheats/operator permissions are not active in that world or server.
 
-If `/help function` works, run:
+If `/help trigger` works, run:
 
 ```mcfunction
-/function calamity:ping
+/trigger rc_ping
 ```
 
-If `ping` is unknown, the datapack is not loaded. Check that the installed folder or zip has `pack.mcmeta` directly at its root.
+If `rc_ping` is unknown or disabled, run `/reload` once. If it still fails, the datapack is not loaded correctly. Check that the installed folder or zip has `pack.mcmeta` directly at its root.
 
 Correct:
 
