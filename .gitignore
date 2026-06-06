@@ -1,0 +1,11 @@
+# Local Minecraft test worlds and generated release zips.
+test-worlds/
+dist/
+*.zip
+
+# Editor noise.
+.vscode/
+.idea/
+*.swp
+*.tmp
+
