@@ -8,12 +8,28 @@ This is also a first GitHub learning project. The repository is intentionally sm
 
 - Starts and stops a timed calamity challenge.
 - Runs a random event every 1200 game ticks, about 60 seconds.
-- Includes five safe events:
+- Includes twenty events, split between danger and help:
   - blindness fog
   - mob ambush
   - gravity slip
   - weakness wave
+  - starving curse
+  - creeper drop
+  - inventory weight
+  - frozen feet
+  - dark pulse
+  - cobweb snare
+  - fire panic
+  - rotten snack
+  - hostile bell
   - lucky relief
+  - guardian blessing
+  - swift wind
+  - supply cache
+  - golden hour
+  - miner's grace
+  - second chance
+- Shows a sidebar with challenge state, current event ID, and seconds until the next event.
 - Avoids permanent terrain destruction.
 
 ## Install In Minecraft
@@ -27,25 +43,25 @@ This is also a first GitHub learning project. The repository is intentionally sm
 
 ## Commands
 
-Use this single player command after `/reload`:
+Use these player commands after `/reload`:
 
 ```mcfunction
-/trigger rc set 1
-/trigger rc set 2
-/trigger rc set 3
-/trigger rc set 4
-/trigger rc set 9
+/trigger ping
+/trigger start
+/trigger stop
+/trigger force_event
+/trigger uninstall
 ```
 
-The numbers mean:
+The commands mean:
 
-- `1`: ping test
-- `2`: start
-- `3`: stop
-- `4`: force one random event
-- `9`: uninstall scoreboards
+- `ping`: test whether the datapack is ready
+- `start`: start the random calamity timer
+- `stop`: stop the timer
+- `force_event`: trigger one event immediately
+- `uninstall`: remove this datapack's scoreboards
 
-The single `/trigger rc set ...` command is the recommended way to use the datapack.
+These named `/trigger` commands are the recommended way to use the datapack.
 
 Operator function commands are also available:
 
@@ -67,7 +83,7 @@ The longer admin names also work:
 /function calamity:admin/uninstall
 ```
 
-Use `/trigger rc set 1` first when testing. If it works, the datapack command trigger is ready.
+Use `/trigger ping` first when testing. If it works, the datapack command triggers are ready.
 
 ## GitHub Learning Checklist
 
@@ -121,10 +137,10 @@ If `/help trigger` is unknown, commands/cheats/operator permissions are not acti
 If `/help trigger` works, run:
 
 ```mcfunction
-/trigger rc set 1
+/trigger ping
 ```
 
-If `rc` is unknown or disabled, run `/reload` once. If it still fails, the datapack is not loaded correctly. Check that the installed folder or zip has `pack.mcmeta` directly at its root.
+If `ping` is unknown or disabled, run `/reload` once. If it still fails, the datapack is not loaded correctly. Check that the installed folder or zip has `pack.mcmeta` directly at its root.
 
 Correct:
 

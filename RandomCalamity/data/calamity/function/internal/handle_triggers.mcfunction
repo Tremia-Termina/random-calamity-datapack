@@ -1,4 +1,13 @@
 function calamity:internal/enable_triggers
+execute as @a[scores={ping=1..}] run function calamity:admin/ping
+scoreboard players reset @a ping
+execute as @a[scores={start=1..}] run function calamity:admin/start
+scoreboard players reset @a start
+execute as @a[scores={stop=1..}] run function calamity:admin/stop
+scoreboard players reset @a stop
+execute as @a[scores={force_event=1..}] run function calamity:admin/force_event
+scoreboard players reset @a force_event
+execute as @a[scores={uninstall=1..}] run function calamity:admin/uninstall
 execute as @a[scores={rc=1}] run function calamity:admin/ping
 execute as @a[scores={rc=2}] run function calamity:admin/start
 execute as @a[scores={rc=3}] run function calamity:admin/stop

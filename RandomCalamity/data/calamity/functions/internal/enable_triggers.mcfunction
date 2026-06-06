@@ -4,3 +4,8 @@ scoreboard players enable @a rc_start
 scoreboard players enable @a rc_stop
 scoreboard players enable @a rc_force
 scoreboard players enable @a rc_uninstall
+scoreboard players enable @a ping
+scoreboard players enable @a start
+scoreboard players enable @a stop
+scoreboard players enable @a force_event
+scoreboard players enable @a uninstall
