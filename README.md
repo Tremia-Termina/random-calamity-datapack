@@ -30,6 +30,16 @@ This is also a first GitHub learning project. The repository is intentionally sm
 Run these as an operator or in a cheats-enabled single-player world:
 
 ```mcfunction
+/function calamity:ping
+/function calamity:start
+/function calamity:stop
+/function calamity:force_event
+/function calamity:uninstall
+```
+
+The longer admin names also work:
+
+```mcfunction
 /function calamity:admin/ping
 /function calamity:admin/start
 /function calamity:admin/stop
@@ -89,7 +99,7 @@ If `/help function` is unknown, commands/cheats/operator permissions are not act
 If `/help function` works, run:
 
 ```mcfunction
-/function calamity:admin/ping
+/function calamity:ping
 ```
 
 If `ping` is unknown, the datapack is not loaded. Check that the installed folder or zip has `pack.mcmeta` directly at its root.
