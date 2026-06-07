@@ -1,32 +1,12 @@
-# Random Calamity Datapack
+# Random Event Datapack
 
-Random Calamity is a Minecraft Java 1.21.5 datapack for a simple survival challenge. When the challenge is enabled, a timer triggers one random event every 60 seconds.
+Random Event is a Minecraft Java 1.21.5 datapack for a survival challenge. When enabled, it triggers one random positive or negative event every 60 seconds.
 
 ## What It Does
 
-- Starts and stops a timed calamity challenge.
-- Runs a random event every 1200 game ticks, about 60 seconds.
-- Includes twenty events, split between danger and help:
-  - blindness fog
-  - mob ambush
-  - gravity slip
-  - weakness wave
-  - starving curse
-  - creeper drop
-  - inventory weight
-  - frozen feet
-  - dark pulse
-  - cobweb snare
-  - fire panic
-  - rotten snack
-  - hostile bell
-  - lucky relief
-  - guardian blessing
-  - swift wind
-  - supply cache
-  - golden hour
-  - miner's grace
-  - second chance
+- Starts and stops a timed random event challenge.
+- Runs one event every 1200 game ticks, about 60 seconds.
+- Includes twenty events: 13 negative events and 7 positive events.
 - Shows a sidebar with challenge state, current event ID, and seconds until the next event.
 - Avoids permanent terrain destruction.
 
@@ -35,61 +15,118 @@ Random Calamity is a Minecraft Java 1.21.5 datapack for a simple survival challe
 1. Open Minecraft Java 1.21.5.
 2. Create or open a world.
 3. Open the world folder, then open `datapacks`.
-4. Copy the `RandomCalamity` folder into `datapacks`.
+4. Copy the `RandomEvent` folder or release zip into `datapacks`.
 5. Run `/reload` in game.
-6. Run `/datapack list enabled` and confirm Random Calamity is listed.
+6. Run `/datapack list enabled` and confirm the datapack is listed.
 
 ## Commands
 
-Use these player commands after `/reload`:
+Use these `/trigger` commands after `/reload`:
 
 ```mcfunction
 /trigger ping
 /trigger start
 /trigger stop
-/trigger force_event
+/trigger event
 /trigger uninstall
 ```
 
-The commands mean:
+Command meanings:
 
-- `ping`: test whether the datapack is ready
-- `start`: start the random calamity timer
-- `stop`: stop the timer
-- `force_event`: trigger one event immediately
-- `uninstall`: remove this datapack's scoreboards
-
-These named `/trigger` commands are the recommended way to use the datapack.
-
-Operator function commands are also available:
-
-```mcfunction
-/function calamity:ping
-/function calamity:start
-/function calamity:stop
-/function calamity:force_event
-/function calamity:uninstall
-```
-
-The longer admin names also work:
-
-```mcfunction
-/function calamity:admin/ping
-/function calamity:admin/start
-/function calamity:admin/stop
-/function calamity:admin/force_event
-/function calamity:admin/uninstall
-```
+- `ping`: test whether the datapack is ready.
+- `start`: start the random event timer.
+- `stop`: stop the timer.
+- `event`: trigger one event immediately.
+- `uninstall`: remove this datapack's scoreboards.
 
 Use `/trigger ping` first when testing. If it works, the datapack command triggers are ready.
 
+## Event Pool
+
+Negative events:
+
+- blindness fog
+- mob ambush
+- gravity slip
+- weakness wave
+- starving curse
+- creeper drop
+- inventory weight
+- frozen feet
+- dark pulse
+- cobweb snare
+- fire panic
+- rotten snack
+- hostile bell
+
+Positive events:
+
+- lucky relief
+- guardian blessing
+- swift wind
+- supply cache
+- golden hour
+- miner's grace
+- second chance
+
+## Datapack Structure
+
+```text
+RandomEvent/
+  pack.mcmeta
+  data/
+    minecraft/
+      tags/
+        function/
+          load.json
+          tick.json
+    random_event/
+      function/
+        load.mcfunction
+        tick.mcfunction
+        admin/
+          ping.mcfunction
+          start.mcfunction
+          stop.mcfunction
+          event.mcfunction
+          uninstall.mcfunction
+        internal/
+          enable_triggers.mcfunction
+          handle_triggers.mcfunction
+          trigger_event.mcfunction
+          update_sidebar.mcfunction
+        events/
+          *.mcfunction
+tools/
+  build-release.ps1
+```
+
+Important files:
+
+- `pack.mcmeta`: datapack metadata and Minecraft pack format.
+- `data/minecraft/tags/function/load.json`: runs `random_event:load` after `/reload`.
+- `data/minecraft/tags/function/tick.json`: runs `random_event:tick` every game tick.
+- `data/random_event/function/load.mcfunction`: creates scoreboards, trigger commands, fixed-order sidebar rows, and sidebar teams.
+- `data/random_event/function/tick.mcfunction`: handles trigger input, counts down the timer, and fires events.
+- `data/random_event/function/internal/update_sidebar.mcfunction`: updates stable sidebar row suffixes while keeping row scores fixed.
+- `data/random_event/function/internal/trigger_event.mcfunction`: rolls `1..20` and dispatches to one event file.
+- `data/random_event/function/events/`: one `.mcfunction` file per random event.
+- `tools/build-release.ps1`: builds a Minecraft-safe release zip with `/` path separators.
+
+To add or change an event:
+
+1. Add or edit a file in `data/random_event/function/events/`.
+2. Update `data/random_event/function/internal/trigger_event.mcfunction` so the random range and event mapping include it.
+3. Keep short event feedback in `title` and `subtitle`; the sidebar shows fixed-order `State`, `Event`, and `Next` rows.
+4. Rebuild the release zip with `tools/build-release.ps1`.
+
 ## Release Zip
 
-When publishing a release zip, zip the contents of `RandomCalamity` so `pack.mcmeta` is at the zip root. Do not zip the outer repository folder.
+When publishing a release zip, zip the contents of `RandomEvent` so `pack.mcmeta` is at the zip root. Do not zip the outer repository folder.
 
 ```powershell
 cd F:\.github\random-calamity-datapack
-.\tools\build-release.ps1 -Version 1.1.1
+.\tools\build-release.ps1 -Version 1.1.2
 ```
 
 Use `tools/build-release.ps1` instead of `Compress-Archive`; Minecraft expects zip entries like `data/minecraft/...`, not Windows-style `data\minecraft\...`.
@@ -115,12 +152,12 @@ If `ping` is unknown or disabled, run `/reload` once. If it still fails, the dat
 Correct:
 
 ```text
-datapacks/RandomCalamity/pack.mcmeta
-datapacks/RandomCalamity/data/
+datapacks/RandomEvent/pack.mcmeta
+datapacks/RandomEvent/data/
 ```
 
 Incorrect:
 
 ```text
-datapacks/random-calamity-datapack/RandomCalamity/pack.mcmeta
+datapacks/random-calamity-datapack/RandomEvent/pack.mcmeta
 ```

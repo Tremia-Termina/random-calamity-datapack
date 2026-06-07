@@ -1,2 +1,0 @@
-function calamity:admin/uninstall
-

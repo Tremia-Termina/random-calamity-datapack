@@ -5,9 +5,9 @@ param(
 $ErrorActionPreference = "Stop"
 
 $RepoRoot = Split-Path -Parent $PSScriptRoot
-$PackRoot = Join-Path $RepoRoot "RandomCalamity"
+$PackRoot = Join-Path $RepoRoot "RandomEvent"
 $DistRoot = Join-Path $RepoRoot "dist"
-$ZipPath = Join-Path $DistRoot "RandomCalamity-$Version.zip"
+$ZipPath = Join-Path $DistRoot "RandomEvent-$Version.zip"
 $PackRootPrefix = $PackRoot.TrimEnd("\") + "\"
 
 New-Item -ItemType Directory -Force -Path $DistRoot | Out-Null
