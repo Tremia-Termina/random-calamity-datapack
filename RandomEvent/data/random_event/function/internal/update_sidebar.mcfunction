@@ -25,6 +25,9 @@ execute if score #event rc.event matches 17 run team modify rc.line.event suffix
 execute if score #event rc.event matches 18 run team modify rc.line.event suffix {"text":" Golden Hour","color":"yellow"}
 execute if score #event rc.event matches 19 run team modify rc.line.event suffix {"text":" Miner's Grace","color":"green"}
 execute if score #event rc.event matches 20 run team modify rc.line.event suffix {"text":" Second Chance","color":"gold"}
+execute if score #event rc.event matches 21 run team modify rc.line.event suffix {"text":" Enchanted Manual","color":"light_purple"}
+execute if score #event rc.event matches 22 run team modify rc.line.event suffix {"text":" Golden Apple Gift","color":"gold"}
+execute if score #event rc.event matches 23 run team modify rc.line.event suffix {"text":" Diamond Spark","color":"aqua"}
 execute if score #next rc.value matches 0 run team modify rc.line.next suffix {"text":" 0s","color":"yellow"}
 execute if score #next rc.value matches 1 run team modify rc.line.next suffix {"text":" 1s","color":"yellow"}
 execute if score #next rc.value matches 2 run team modify rc.line.next suffix {"text":" 2s","color":"yellow"}

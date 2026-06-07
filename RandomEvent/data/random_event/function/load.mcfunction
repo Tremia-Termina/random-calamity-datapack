@@ -30,7 +30,7 @@ team modify rc.line.event color aqua
 team modify rc.line.next color yellow
 team modify rc.line.state suffix {"text":" OFF","color":"red"}
 team modify rc.line.event suffix {"text":" None","color":"gray"}
-team modify rc.line.next suffix {"text":" 0s","color":"yellow"}
+team modify rc.line.next suffix {"text":" 15-60s","color":"yellow"}
 scoreboard objectives modify rc.display numberformat blank
 scoreboard objectives setdisplay sidebar rc.display
 function random_event:internal/enable_triggers

@@ -1,12 +1,12 @@
 # Random Event Datapack
 
-Random Event is a Minecraft Java 1.21.5 datapack for a survival challenge. When enabled, it triggers one random positive or negative event every 60 seconds.
+Random Event is a Minecraft Java 1.21.5 datapack for a survival challenge. When enabled, it triggers random positive or negative events at changing intervals.
 
 ## What It Does
 
 - Starts and stops a timed random event challenge.
-- Runs one event every 1200 game ticks, about 60 seconds.
-- Includes twenty events: 13 negative events and 7 positive events.
+- Runs one event every 15-60 seconds.
+- Includes twenty-three events: 13 negative events and 10 positive events.
 - Shows a sidebar with challenge state, current event ID, and seconds until the next event.
 - Avoids permanent terrain destruction.
 
@@ -68,6 +68,18 @@ Positive events:
 - golden hour
 - miner's grace
 - second chance
+- enchanted manual
+- golden apple gift
+- diamond spark
+
+Mob Ambush has four variants:
+
+- 3 cave spiders
+- 2 chicken jockeys
+- 3 wither skeletons
+- 6-8 mixed zombies, bow skeletons, and spiders
+
+Ambush mobs are spread around players after spawning so they are less likely to be trapped inside walls.
 
 ## Datapack Structure
 
@@ -93,10 +105,14 @@ RandomEvent/
         internal/
           enable_triggers.mcfunction
           handle_triggers.mcfunction
+          set_random_cooldown.mcfunction
+          spread_mobs.mcfunction
           trigger_event.mcfunction
           update_sidebar.mcfunction
         events/
           *.mcfunction
+          mob_ambush/
+            *.mcfunction
 tools/
   build-release.ps1
 ```
@@ -108,8 +124,10 @@ Important files:
 - `data/minecraft/tags/function/tick.json`: runs `random_event:tick` every game tick.
 - `data/random_event/function/load.mcfunction`: creates scoreboards, trigger commands, fixed-order sidebar rows, and sidebar teams.
 - `data/random_event/function/tick.mcfunction`: handles trigger input, counts down the timer, and fires events.
+- `data/random_event/function/internal/set_random_cooldown.mcfunction`: rolls the next interval from 15-60 seconds.
+- `data/random_event/function/internal/spread_mobs.mcfunction`: spreads ambush mobs around players after summoning.
 - `data/random_event/function/internal/update_sidebar.mcfunction`: updates stable sidebar row suffixes while keeping row scores fixed.
-- `data/random_event/function/internal/trigger_event.mcfunction`: rolls `1..20` and dispatches to one event file.
+- `data/random_event/function/internal/trigger_event.mcfunction`: rolls `1..23` and dispatches to one event file.
 - `data/random_event/function/events/`: one `.mcfunction` file per random event.
 - `tools/build-release.ps1`: builds a Minecraft-safe release zip with `/` path separators.
 
