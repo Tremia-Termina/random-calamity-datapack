@@ -144,7 +144,7 @@ When publishing a release zip, zip the contents of `RandomEvent` so `pack.mcmeta
 
 ```powershell
 cd F:\.github\random-calamity-datapack
-.\tools\build-release.ps1 -Version 1.1.2
+.\tools\build-release.ps1 -Version 1.2.1
 ```
 
 Use `tools/build-release.ps1` instead of `Compress-Archive`; Minecraft expects zip entries like `data/minecraft/...`, not Windows-style `data\minecraft\...`.
