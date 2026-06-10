@@ -1,6 +1,6 @@
-title @a title {"text":"Crystal Interference","color":"gray","bold":true}
-title @a subtitle {"text":"Arrows disrupt the crystal shots.","color":"red"}
-execute at @a run summon minecraft:arrow ~ ~10 ~ {Motion:[0.0d,-1.9d,0.0d],damage:5.0d}
-execute at @a run summon minecraft:arrow ~2 ~10 ~2 {Motion:[0.0d,-1.9d,0.0d],damage:5.0d}
-execute at @a run summon minecraft:arrow ~-2 ~10 ~-2 {Motion:[0.0d,-1.9d,0.0d],damage:5.0d}
-playsound minecraft:entity.arrow.shoot hostile @a ~ ~ ~ 1 0.6
+title @a title {"text":"Crystal Pulse","color":"light_purple","bold":true}
+title @a subtitle {"text":"The crystals shove your aim off line.","color":"red"}
+effect give @a minecraft:levitation 4 0 true
+effect give @a minecraft:glowing 15 0 true
+execute at @a run particle minecraft:end_rod ~ ~1 ~ 1.5 0.7 1.5 0.03 80 force @a
+playsound minecraft:block.beacon.deactivate hostile @a ~ ~ ~ 1 1.4

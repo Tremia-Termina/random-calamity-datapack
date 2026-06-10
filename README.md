@@ -18,7 +18,7 @@ Random Event is a Minecraft Java 1.21.5 datapack for a survival challenge. When 
 1. Open Minecraft Java 1.21.5.
 2. Create or open a world.
 3. Open the world folder, then open `datapacks`.
-4. Copy the `RandomEvent` folder or release zip into `datapacks`.
+4. Copy the `RandomEvent` folder into `datapacks`.
 5. Run `/reload` in game.
 6. Run `/datapack list enabled` and confirm the datapack is listed.
 
@@ -150,7 +150,7 @@ Stage 4, The End: 15 events, each `6.67%`
 - Ender Swarm
 - Dragon Breath Bloom
 - Void Pressure
-- Crystal Interference
+- Crystal Pulse
 - Feather Fall
 - End Resistance
 - Golden Apple Gift
@@ -182,7 +182,7 @@ Negative events:
 - ender swarm
 - dragon breath bloom
 - void pressure
-- crystal interference
+- crystal pulse
 
 Positive events:
 
@@ -266,8 +266,6 @@ RandomEvent/
         item/
           enchanted_manual/
             *.json
-tools/
-  build-release.ps1
 ```
 
 Important files:
@@ -288,8 +286,6 @@ Important files:
 - `data/random_event/function/events/`: one `.mcfunction` file per random event.
 - `data/random_event/function/events/enchanted_manual/`: helper functions for selecting and enchanting eligible player items.
 - `data/random_event/tags/item/enchanted_manual/`: item tag groups used by the random enchantment helpers.
-- `tools/build-release.ps1`: builds a Minecraft-safe release zip with `/` path separators.
-
 To add or change an event:
 
 1. Add or edit a file in `data/random_event/function/events/`.
@@ -297,7 +293,7 @@ To add or change an event:
 3. Add the event ID to one or more files in `data/random_event/function/internal/event_pools/`.
 4. Update `data/random_event/function/internal/update_sidebar.mcfunction` so the sidebar shows its name.
 5. Keep short event feedback in `title` and `subtitle`; the sidebar shows fixed-order `Stage`, `State`, `Event`, and `Next` rows.
-6. Rebuild the release zip with `tools/build-release.ps1`.
+6. Run `/reload` in a test world and trigger the event or its stage to check the result.
 
 ## Troubleshooting Unknown Command
 

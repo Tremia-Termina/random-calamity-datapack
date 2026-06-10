@@ -43,7 +43,7 @@ execute if score #event rc.event matches 29 run team modify rc.line.event suffix
 execute if score #event rc.event matches 30 run team modify rc.line.event suffix {"text":" Ender Swarm","color":"dark_purple"}
 execute if score #event rc.event matches 31 run team modify rc.line.event suffix {"text":" Dragon Breath","color":"dark_purple"}
 execute if score #event rc.event matches 32 run team modify rc.line.event suffix {"text":" Void Pressure","color":"dark_gray"}
-execute if score #event rc.event matches 33 run team modify rc.line.event suffix {"text":" Crystal Arrows","color":"gray"}
+execute if score #event rc.event matches 33 run team modify rc.line.event suffix {"text":" Crystal Pulse","color":"light_purple"}
 execute if score #event rc.event matches 34 run team modify rc.line.event suffix {"text":" Feather Fall","color":"aqua"}
 execute if score #event rc.event matches 35 run team modify rc.line.event suffix {"text":" End Resistance","color":"gold"}
 execute if score #event rc.event matches 36 run team modify rc.line.event suffix {"text":" Arrow Refill","color":"green"}
