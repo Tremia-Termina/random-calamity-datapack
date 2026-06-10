@@ -1,0 +1,17 @@
+{
+  "replace": false,
+  "values": [
+    "#random_event:enchanted_manual/swords",
+    "#random_event:enchanted_manual/pickaxes",
+    "#random_event:enchanted_manual/shovels_and_hoes",
+    "#random_event:enchanted_manual/axes",
+    "#random_event:enchanted_manual/bows",
+    "#random_event:enchanted_manual/maces",
+    "#random_event:enchanted_manual/tridents",
+    "#random_event:enchanted_manual/helmets",
+    "#random_event:enchanted_manual/chestplates",
+    "#random_event:enchanted_manual/leggings",
+    "#random_event:enchanted_manual/boots",
+    "#random_event:enchanted_manual/crossbows"
+  ]
+}

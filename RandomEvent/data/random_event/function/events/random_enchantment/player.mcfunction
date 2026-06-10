@@ -1,0 +1,1 @@
+function random_event:events/enchanted_manual/player

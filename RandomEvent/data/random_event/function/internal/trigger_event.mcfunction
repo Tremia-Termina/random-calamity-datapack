@@ -21,7 +21,7 @@ execute if score #event rc.event matches 17 run function random_event:events/sup
 execute if score #event rc.event matches 18 run function random_event:events/golden_hour
 execute if score #event rc.event matches 19 run function random_event:events/miners_grace
 execute if score #event rc.event matches 20 run function random_event:events/second_chance
-execute if score #event rc.event matches 21 run function random_event:events/enchanted_manual
+execute if score #event rc.event matches 21 run function random_event:events/random_enchantment
 execute if score #event rc.event matches 22 run function random_event:events/golden_apple_gift
 execute if score #event rc.event matches 23 run function random_event:events/diamond_spark
 function random_event:internal/update_sidebar
