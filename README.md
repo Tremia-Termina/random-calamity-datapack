@@ -334,7 +334,7 @@ datapacks/random-calamity-datapack/RandomEvent/pack.mcmeta
 
 ## Contributors
 
-Thanks to [Tremia-Termina](https://github.com/Tremia-Termina) for contributing fixes and improvements through pull requests, including the Fire Panic fix and the improved Random Enchantment event system.
+Thanks to [Tremila-Termina](https://github.com/Tremila-Termina) for contributing fixes and improvements through pull requests, including the Fire Panic fix and the improved Random Enchantment event system.
 
 ## Future Ideas
 
