@@ -1,4 +1,4 @@
-execute store result score #roll rc.random run random value 1..17
+execute store result score #roll rc.random run random value 1..20
 execute if score #roll rc.random matches 1 run scoreboard players set #event rc.event 1
 execute if score #roll rc.random matches 2 run scoreboard players set #event rc.event 2
 execute if score #roll rc.random matches 3 run scoreboard players set #event rc.event 3
@@ -16,4 +16,7 @@ execute if score #roll rc.random matches 14 run scoreboard players set #event rc
 execute if score #roll rc.random matches 15 run scoreboard players set #event rc.event 18
 execute if score #roll rc.random matches 16 run scoreboard players set #event rc.event 19
 execute if score #roll rc.random matches 17 run scoreboard players set #event rc.event 23
+execute if score #roll rc.random matches 18 run scoreboard players set #event rc.event 37
+execute if score #roll rc.random matches 19 run scoreboard players set #event rc.event 38
+execute if score #roll rc.random matches 20 run scoreboard players set #event rc.event 38
 function random_event:internal/run_selected_event

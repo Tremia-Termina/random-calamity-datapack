@@ -7,7 +7,7 @@ Random Event is a Minecraft Java 1.21.5 datapack for a survival challenge. When 
 - Starts and stops a timed random event challenge.
 - Runs one event every 15-60 seconds.
 - Switches event pools by progression stage: Overworld, Nether, Stronghold Hunt, and The End.
-- Includes thirty-six events, with several Ender Dragon fight events only appearing in The End.
+- Includes thirty-eight events, with several Ender Dragon fight events only appearing in The End.
 - Adds optional shared team tasks with clickable time choices in chat.
 - Automatically stops after the Ender Dragon is defeated.
 - Shows a sidebar with current stage, challenge state, current event, and seconds until the next event.
@@ -31,6 +31,7 @@ Use these `/trigger` commands after `/reload`:
 /trigger start
 /trigger stop
 /trigger event
+/trigger boon set 1
 /trigger uninstall
 ```
 
@@ -40,6 +41,7 @@ Command meanings:
 - `start`: start the random event timer.
 - `stop`: stop the timer.
 - `event`: trigger one event immediately.
+- `boon set 1..4`: choose a pending milestone boon when a boon menu is open.
 - `uninstall`: remove this datapack's scoreboards.
 
 Use `/trigger ping` first when testing. If it works, the datapack command triggers are ready. `/trigger start` also sends clickable team task choices to all players.
@@ -84,11 +86,25 @@ Tasks are shared by the whole server team. One player clicking a task starts tha
 
 Task rewards help the whole team, such as fire resistance, golden apples, random enchantments, experience, or strength. Failed tasks apply a short team penalty.
 
+## Milestone Boons
+
+Milestone Boons are shared team rewards unlocked by main-path advancements. Each milestone opens a four-choice chat menu: two long-term attribute boons and two instant supply rewards. The first player who clicks a choice selects it for the whole team.
+
+Long-term boons use attribute modifiers, so they are not lost on death. They are removed when the challenge is uninstalled or when the Ender Dragon is defeated.
+
+- Getting an Upgrade: +2 max health, +5% movement speed, 16 logs plus 16 golden carrots, or an iron pickaxe/iron axe/bucket tool kit.
+- Acquire Hardware: +2 armor, +2 max health, 16 iron ingots plus shield plus golden carrots, or 8 iron ingots plus coal plus golden carrots.
+- Diamonds!: +1 attack damage, +2 armor toughness, 6 diamonds plus 16 experience levels, or one random enchantment plus lapis.
+- We Need to Go Deeper: +1 block/entity interaction range, +10% movement speed plus +0.5 step height, 4 gold blocks plus fire resistance plus golden carrots, or blocks plus bow plus arrows plus golden carrots.
+- Spooky Scary Skeleton: +4 max health, +2 attack damage, golden apples plus 12 experience levels plus golden carrots, or fire resistance plus arrows plus golden carrots.
+- Those Were the Days: +4 armor, +10% movement speed plus +0.1 knockback resistance, 6 gold blocks plus golden apples plus 12 experience levels, or 8 gold blocks plus golden carrots.
+- Eye Spy: +4 max health, +2 armor toughness plus +0.1 knockback resistance, arrows plus golden apples plus slow falling plus golden carrots, or one random enchantment plus 16 experience levels plus lapis.
+
 ## Stage Event Pools
 
 Each stage uses equal probability inside its own pool. For example, if a stage has 15 events, each listed event has a `1/15 = 6.67%` chance whenever an event triggers in that stage.
 
-Stage 1, Overworld: 17 events, each `5.88%`
+Stage 1, Overworld: 20 roll slots. Most entries are `5%`; Misfortune has two slots, so it is `10%`.
 
 - Blindness Fog
 - Mob Ambush
@@ -107,8 +123,10 @@ Stage 1, Overworld: 17 events, each `5.88%`
 - Golden Hour
 - Miner's Grace
 - Diamond Spark
+- Lucky Streak
+- Misfortune
 
-Stage 2, Nether: 15 events, each `6.67%`
+Stage 2, Nether: 18 roll slots. Most entries are `5.56%`; Misfortune has two slots, so it is `11.11%`.
 
 - Mob Ambush
 - Weakness Wave
@@ -125,8 +143,10 @@ Stage 2, Nether: 15 events, each `6.67%`
 - Golden Hour
 - Random Enchantment
 - Golden Apple Gift
+- Lucky Streak
+- Misfortune
 
-Stage 3, Stronghold Hunt: 16 events, each `6.25%`
+Stage 3, Stronghold Hunt: 19 roll slots. Most entries are `5.26%`; Misfortune has two slots, so it is `10.53%`.
 
 - Blindness Fog
 - Mob Ambush
@@ -144,8 +164,10 @@ Stage 3, Stronghold Hunt: 16 events, each `6.25%`
 - Random Enchantment
 - Golden Apple Gift
 - Ender Pearls
+- Lucky Streak
+- Misfortune
 
-Stage 4, The End: 15 events, each `6.67%`
+Stage 4, The End: 18 roll slots. Most entries are `5.56%`; Misfortune has two slots, so it is `11.11%`.
 
 - Gravity Slip
 - Weakness Wave
@@ -162,6 +184,10 @@ Stage 4, The End: 15 events, each `6.67%`
 - Golden Apple Gift
 - Ender Pearls
 - Arrow Refill
+- Lucky Streak
+- Misfortune
+
+Lucky Streak makes the next random event a doubled positive event. Misfortune makes the next three random event triggers each run two negative events.
 
 ## Event Pool
 
@@ -189,6 +215,7 @@ Negative events:
 - dragon breath bloom
 - void pressure
 - crystal pulse
+- misfortune
 
 Positive events:
 
@@ -206,6 +233,7 @@ Positive events:
 - feather fall
 - end resistance
 - arrow refill
+- lucky streak
 
 Mob Ambush has four variants:
 
@@ -262,6 +290,17 @@ RandomEvent/
             *.mcfunction
           fail/
             *.mcfunction
+        boons/
+          reset.mcfunction
+          tick.mcfunction
+          apply_active_modifiers.mcfunction
+          remove_modifiers.mcfunction
+          nodes/
+            *.mcfunction
+          select/
+            *.mcfunction
+          choices/
+            *.mcfunction
         events/
           *.mcfunction
           enchanted_manual/
@@ -289,6 +328,7 @@ Important files:
 - `data/random_event/function/internal/event_pools/`: stage-specific equal-probability event pools.
 - `data/random_event/function/internal/run_selected_event.mcfunction`: maps event IDs to event files.
 - `data/random_event/function/tasks/`: shared team task selection, timers, completion checks, failure checks, and victory stop logic.
+- `data/random_event/function/boons/`: advancement-based four-choice team rewards and long-term attribute modifiers.
 - `data/random_event/function/events/`: one `.mcfunction` file per random event.
 - `data/random_event/function/events/enchanted_manual/`: helper functions for selecting and enchanting eligible player items.
 - `data/random_event/tags/item/enchanted_manual/`: item tag groups used by the random enchantment helpers.
@@ -298,7 +338,7 @@ To add or change an event:
 2. Add its event ID to `data/random_event/function/internal/run_selected_event.mcfunction`.
 3. Add the event ID to one or more files in `data/random_event/function/internal/event_pools/`.
 4. Update `data/random_event/function/internal/update_sidebar.mcfunction` so the sidebar shows its name.
-5. Keep short event feedback in `title` and `subtitle`; the sidebar shows fixed-order `Stage`, `State`, `Event`, and `Next` rows.
+5. Keep short event feedback in `title` and `subtitle`; the sidebar shows `Event` for normal rolls, or `Event1` plus `Event2` during Misfortune double rolls.
 6. Run `/reload` in a test world and trigger the event or its stage to check the result.
 
 ## Troubleshooting Unknown Command

@@ -34,3 +34,5 @@ execute if score #event rc.event matches 33 run function random_event:events/cry
 execute if score #event rc.event matches 34 run function random_event:events/feather_fall
 execute if score #event rc.event matches 35 run function random_event:events/end_resistance
 execute if score #event rc.event matches 36 run function random_event:events/arrow_refill
+execute if score #event rc.event matches 37 run function random_event:events/lucky_streak
+execute if score #event rc.event matches 38 run function random_event:events/misfortune
